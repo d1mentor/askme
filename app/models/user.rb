@@ -5,9 +5,11 @@ class User < ApplicationRecord
   ITERATIONS = 20_000
   DIGEST = OpenSSL::Digest::SHA256.new
 
-  attr_accessor :password
+  attr_accessor :password 
 
   has_many :questions
+
+  before_validation :downcase_username, :downcase_email
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true, presence: true
   validates :username, length: { maximum:40 }, format: { with: USERNAME_REGEXP }, uniqueness: true, presence: true
@@ -21,7 +23,7 @@ class User < ApplicationRecord
   # пользователя. Если нет — возвращает nil.
   def self.authenticate(email, password)
     # Сперва находим кандидата по email
-    user = find_by(email: email.downcase)
+    user = find_by(email: email&.downcase)
 
     # Если пользователь не найден, возвращает nil
     return nil unless user.present?
@@ -48,8 +50,11 @@ class User < ApplicationRecord
     password_hash.unpack('H*')[0]
   end
 
-  def user_data_to_downcase
+  def self.downcase_username
     username&.downcase!
+  end
+
+  def self.downcase_email
     email&.downcase!
   end
 
