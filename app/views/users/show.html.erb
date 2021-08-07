@@ -2,26 +2,21 @@
   <h1 class="title-medium">
     <%= @user.name %>
   </h1>
-
   <div class="buffer-both">
     <%= link_to 'Редактировать профиль', edit_user_path(@user) if current_user == @user %>
   </div>
-
   <%# Добавляем ссылку для редактирования пользователя, которая ведет на %>
   <%# страницу /users/:id/edit %>
   <div class="user-image-div">
     <%= image_tag user_avtar(@user), class: 'user-image', alt: '[Фото]' %>
   </div>
-
   <h2 class="title-small buffer-both">
     @<%= @user.username %>
   </h2>
-
   <div class="user-ask-button container text-center">
     <%= link_to "Спроси меня", '', class: 'button button-light', id: 'ask-button' %>
   </div>
 </div>
-
 <div class="user-question-form-div column-1-4 column-1-4-right" id='ask-form'>
   <div class="user-question-form buffer-both">
     <%= form_for @new_question do |f| %>
@@ -38,11 +33,10 @@
     <% end %>
   </div>
 </div>
-
 <div class="column-3-4 buffer-both text-center background-white">
   У пользователя <%= declination(@questions.count, "вопрос", "вопроса", "вопросов") %> 
+  и <%= declination(answers_count(@questions), "ответ", "ответа", "ответов") %> 
 </div>
-
 <div class="column-3-4">
   <div class="user-questions buffer-both">
     <div class="questions-list">
@@ -55,6 +49,4 @@
     </div>
   </div>
 </div>
-
-
  

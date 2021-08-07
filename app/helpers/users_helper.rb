@@ -12,4 +12,12 @@ module UsersHelper
       "#{amount} #{form3}"
     end
   end
+
+  def answers_count(questions)
+    count = 0
+    questions.each do |q|
+      count += 1 if q.answer != nil 
+    end
+    count  
+  end  
 end
