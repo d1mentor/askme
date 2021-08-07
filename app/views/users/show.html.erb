@@ -35,7 +35,8 @@
 </div>
 <div class="column-3-4 buffer-both text-center background-white">
   У пользователя <%= declination(@questions.count, "вопрос", "вопроса", "вопросов") %> 
-  и <%= declination(answers_count(@questions), "ответ", "ответа", "ответов") %> 
+  и <%= declination(answers_count(@questions), "ответ", "ответа", "ответов") %> |
+  <%=  declination(@questions.count - answers_count(@questions), "вопрос", "вопроса", "вопросов") %> без ответа
 </div>
 <div class="column-3-4">
   <div class="user-questions buffer-both">
