@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :username, length: { maximum:40 }, format: { with: USERNAME_REGEXP }, uniqueness: true, presence: true
   validates :password, confirmation: true, presence: true, on: :create
 
-  before_save :user_data_to_downcase
+  before_save :downcase_username, :downcase_email
   before_save :encrypt_password
 
   # Основной метод для аутентификации юзера (логина). Проверяет email и пароль,
@@ -50,11 +50,11 @@ class User < ApplicationRecord
     password_hash.unpack('H*')[0]
   end
 
-  def self.downcase_username
+  def downcase_username
     username&.downcase!
   end
 
-  def self.downcase_email
+  def downcase_email
     email&.downcase!
   end
 
