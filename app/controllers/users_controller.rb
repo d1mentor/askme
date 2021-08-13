@@ -46,10 +46,8 @@ class UsersController < ApplicationController
     if @user.save
       # Если удалось, отправляем пользователя на главную с сообщение, что
       # пользователь создан.
-      
       session_after_signup
       redirect_to root_url, notice: 'Пользователь успешно зарегестрирован!'
-
     else
       # Если не удалось по какой-то причине сохранить пользователя, то рисуем
       # (обратите внимание, это не редирект), страницу new с формой
@@ -126,6 +124,6 @@ class UsersController < ApplicationController
   # :avatar_url. Другие ключи будут отброшены.
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation,
-                                 :name, :username, :avtar_url)
+                                 :name, :username, :avtar_url, :profile_color)
   end
 end

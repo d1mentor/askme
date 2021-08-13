@@ -14,6 +14,7 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true, presence: true
   validates :username, length: { maximum:40 }, format: { with: USERNAME_REGEXP }, uniqueness: true, presence: true
   validates :password, confirmation: true, presence: true, on: :create
+  validates :profile_color, presence: true
 
   before_save :downcase_username, :downcase_email
   before_save :encrypt_password
