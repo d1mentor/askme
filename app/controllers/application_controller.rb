@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
+  def session_after_signup
+    session[:user_id] = @user.id
+  end  
+
   # Метод, который редиректит посетителя на главную с предупреждением о
   # нарушении доступа. Мы будем использовать этот метод, когда надо запретить
   # пользователю что-то.

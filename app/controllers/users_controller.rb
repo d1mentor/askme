@@ -47,7 +47,8 @@ class UsersController < ApplicationController
       # Если удалось, отправляем пользователя на главную с сообщение, что
       # пользователь создан.
       
-      #redirect_to root_url, notice: 'Пользователь успешно зарегестрирован!'
+      session_after_signup
+      redirect_to root_url, notice: 'Пользователь успешно зарегестрирован!'
 
     else
       # Если не удалось по какой-то причине сохранить пользователя, то рисуем
