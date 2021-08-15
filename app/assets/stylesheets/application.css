@@ -32,3 +32,6 @@
  * они тоже попали бы в конечный стилевой файл.
  *= require_self
  */
+/*
+ *= require jquery.minicolors
+ */
